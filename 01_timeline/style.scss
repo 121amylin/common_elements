@@ -1,0 +1,132 @@
+/* ========== reset & layout start ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body,
+html {
+  font: 62.5%/1 "微軟正黑體", Microsoft JhengHei, Arial, Helvetica, sans-serif;
+  text-size-adjust: 100%;
+  line-height: 1.75;
+}
+img {
+  max-width: 100%;
+}
+.container {
+  width: 100%;
+  max-width: 1560px;
+  margin: 0 auto;
+}
+/* ========== reset & layout end ========== */
+
+//  ========== scss start ==========
+$viewport_width: 991px;
+%ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+// ========== scss end ==========
+
+/* ========== css var start ========== */
+.timeline_list {
+  --space: 20px;
+  --horizontal_number: 4;
+  --line_color: aquamarine;
+}
+/* ========== css var start ========== */
+
+/* ========== timeline start ========== */
+.timeline_list {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  overflow: hidden;
+  @media (max-width: $viewport_width) {
+    flex-direction: column;
+  }
+  .timeline_item {
+    width: calc(100% / var(--horizontal_number));
+    padding: var(--space);
+    @media (max-width: $viewport_width) {
+      width: 100%;
+      padding-left: calc(var(--space) * 3);
+      position: relative;
+    }
+    &:last-child {
+      .line {
+        &::before {
+          width: 100%;
+          left: 50%;
+          @media (max-width: $viewport_width) {
+            width: 4px;
+            left: calc(var(--space) * -1.5);
+          }
+        }
+      }
+    }
+  }
+  .pic {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .line {
+    height: 20px;
+    position: relative;
+    margin: 10px 0 8px 0;
+
+    @media (max-width: $viewport_width) {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      margin: var(--space) 0;
+    }
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: var(--line_color);
+      transform: translate(-50%, -50%);
+      top: 50%;
+    }
+    &::before {
+      width: calc(100% + var(--space) * 2);
+      height: 4px;
+      left: calc(50% + var(--space));
+      @media (max-width: $viewport_width) {
+        width: 4px;
+        height: 100%;
+        left: calc(var(--space) * -1.5);
+        top: 50%;
+      }
+    }
+    &::after {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      left: 50%;
+      @media (max-width: $viewport_width) {
+        left: calc(var(--space) * -1.5);
+      }
+    }
+  }
+  .tit {
+    @extend %ellipsis;
+    font-size: 2rem;
+    margin-bottom: 4px;
+  }
+  .descript {
+    @extend %ellipsis;
+    font-size: 1.6rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: unset;
+  }
+}
+/* ========== timeline end ========== */
