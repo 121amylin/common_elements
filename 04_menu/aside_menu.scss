@@ -1,0 +1,216 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+:root {
+  --main_color: #e1a359;
+  --main_hover_color: #d16f13;
+  --main_header_height: 84px;
+  --aside_width: 200px;
+  @media (max-width: 991px) {
+    --main_header_height: 79px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #eee;
+  &.fixed {
+    position: fixed;
+  }
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+p {
+  line-height: 1.75;
+}
+.container {
+  width: 100%;
+  max-width: 1240px;
+  padding: 20px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.border_bottom {
+  border-bottom: 1px solid #000;
+}
+.header {
+  background-color: #fff;
+  height: var(--main_header_height);
+  position: relative;
+  z-index: 1;
+  .logo {
+    position: relative;
+    z-index: 9;
+  }
+}
+/* 主選單 */
+.main_menu {
+  @media (max-width: 991px) {
+    // display: none;
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - var(--main_header_height));
+    overflow-y: scroll;
+    top: var(--main_header_height);
+    left: 0;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(-150%);
+    transition: opacity 0.3s, transform 0.6s;
+    // transition-delay: 1s;
+  }
+  &.show {
+    // display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.main_menu_list {
+  list-style: none;
+  display: flex;
+
+  @media (max-width: 991px) {
+    // height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: calc(100vh - var(--main_header_height));
+  }
+  .main_menu_item {
+    a {
+      display: block;
+      padding: 12px 24px;
+    }
+  }
+}
+/* 漢堡選單 start */
+.burger_menu {
+  padding: 4px 10px;
+  background-color: var(--main_color);
+  border: none;
+  cursor: pointer;
+  display: none;
+  position: relative;
+  z-index: 9;
+  border-radius: 6px;
+  @media (max-width: 991px) {
+    display: block;
+  }
+  &.show {
+    .line_box {
+      transform: translateX(4px);
+    }
+    .line {
+      &:nth-child(1) {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  .line_box {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+  }
+  .line {
+    display: inline-block;
+    width: 28px;
+    height: 2px;
+    margin: 4px 0;
+    background-color: #fff;
+    transform-origin: left;
+    &:nth-child(1) {
+      transition: transform 0.2s;
+    }
+
+    &:nth-child(2) {
+      transition: opacity 0.2s;
+    }
+
+    &:nth-child(3) {
+      transition: transform 0.2s;
+    }
+  }
+}
+
+.wrap {
+  display: flex;
+}
+/* 側選單 start */
+.aside {
+  width: var(--aside_width);
+  min-height: calc(100vh - var(--main_header_height));
+  padding: 20px;
+  background-color: #ccc;
+  position: absolute;
+  transition: transform 0.3s;
+  &.hide {
+    transform: translateX(calc(var(--aside_width) * -1));
+    .arrow {
+      transform: rotate(-225deg);
+      &:hover {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+.sec_menu_list {
+  list-style: none;
+  a {
+    display: inline-block;
+    padding: 12px 0;
+  }
+}
+.aside_btn {
+  width: 40px;
+  height: 36px;
+  position: absolute;
+  right: -40px;
+  background-color: #ccc;
+  box-shadow: none;
+  border: none;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  cursor: pointer;
+  &:hover {
+    .arrow {
+      transform: rotate(-225deg);
+    }
+  }
+  .arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    transition: transform 0.3s;
+  }
+}
+/* 主內容區 */
+.main {
+  width: calc(100% - var(--aside_width));
+  margin-left: var(--aside_width);
+  padding: 20px 40px 20px 60px;
+  transition: width 0.3s, margin 0.3s;
+  &.open {
+    width: 100%;
+    margin-left: 0;
+  }
+}
