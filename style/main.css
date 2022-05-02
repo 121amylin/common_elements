@@ -22,6 +22,9 @@ body {
 .works_tit {
   color: #fff;
   font-size: 1.8rem;
+  margin-top: 3vw;
+  margin-bottom: 1vw;
+  text-align: center;
 }
 
 .works_list {
@@ -32,6 +35,11 @@ body {
       flex-wrap: wrap;
   margin: 0 -10px;
   list-style: none;
+}
+
+.works_list + .works_tit {
+  border-top: 1px solid #666;
+  padding-top: 5rem;
 }
 
 @media (max-width: 425px) {
@@ -77,5 +85,13 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+a.text_link {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.8rem;
+  padding: 10px 0;
 }
 /*# sourceMappingURL=main.css.map */
