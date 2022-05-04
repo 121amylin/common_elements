@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/* 客製化卷軸 start */
+.nav_list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.nav_list::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.nav_list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+/* 客製化卷軸 end */
+/*# sourceMappingURL=style.css.map */
